@@ -1,62 +1,37 @@
+
 #include "monty.h"
-#include <string.h>
 
 /**
- * free_stack - Frees a stack_t stack.
- * @stack: A pointer to the top (stack) or
- *         bottom (queue) of a stack_t.
+ * set_op_tok_error - Sets last element of op_toks to be an error code.
+ * @error_code: Integer to store as a string in op_toks.
  */
-void free_stack(stack_t **stack)
+void set_op_tok_error(int error_code)
 {
-	stack_t *tmp = *stack;
+	int toks_len = 0, i = 0;
+	char *exit_str = NULL;
+	char **new_toks = NULL;
 
-	while (*stack)
+	toks_len = token_arr_len();
+	new_toks = malloc(sizeof(char *) * (toks_len + 2));
+	if (!op_toks)
 	{
-		tmp = (*stack)->next;
-		free(*stack);
-		*stack = tmp;
+		malloc_error();
+		return;
 	}
-}
-
-/**
- * init_stack - Initializes a stack_t stack with beginning
- *              stack and ending queue nodes.
- * @stack: A pointer to an unitialized stack_t stack.
- *
- * Return: If an error occurs - EXIT_FAILURE.
- *         Otherwise - EXIT_SUCCESS.
- */
-int init_stack(stack_t **stack)
-{
-	stack_t *s;
-
-	s = malloc(sizeof(stack_t));
-	if (s == NULL)
-		return (malloc_error());
-
-	s->n = STACK;
-	s->prev = NULL;
-	s->next = NULL;
-
-	*stack = s;
-
-	return (EXIT_SUCCESS);
-}
-
-/**
- * check_mode - Checks if a stack_t linked list is in stack or queue mode.
- * @stack: A pointer to the top (stack) or bottom (queue)
- *         of a stack_t linked list.
- *
- * Return: If the stack_t is in stack mode - STACK (0).
- *         If the stack_t is in queue mode - QUEUE (1).
- *         Otherwise - 2.
- */
-int check_mode(stack_t *stack)
-{
-	if (stack->n == STACK)
-		return (STACK);
-	else if (stack->n == QUEUE)
-		return (QUEUE);
-	return (2);
+	while (i < toks_len)
+	{
+		new_toks[i] = op_toks[i];
+		i++;
+	}
+	exit_str = get_int(error_code);
+	if (!exit_str)
+	{
+		free(new_toks);
+		malloc_error();
+		return;
+	}
+	new_toks[i++] = exit_str;
+	new_toks[i] = NULL;
+	free(op_toks);
+	op_toks = new_toks;
 }
