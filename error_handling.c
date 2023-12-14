@@ -1,68 +1,67 @@
 #include "monty.h"
 
-int printUsageError(void);
-int printMallocError(void);
-int printFileOpenError(char *filename);
-int printUnknownOpError(char *opcode, unsigned int lineNumber);
-int printNoIntError(unsigned int lineNumber);
+int usage_error(void);
+int malloc_error(void);
+int f_open_error(char *filename);
+int unknown_op_error(char *opcode, unsigned int line_number);
+int no_int_error(unsigned int line_number);
 
 /**
- * printUsageError - Outputs usage-related error messages.
+ * usage_error - Prints usage error messages.
  *
- * Return: Always returns (EXIT_FAILURE).
+ * Return: (EXIT_FAILURE) always.
  */
-int printUsageError(void)
+int usage_error(void)
 {
 	fprintf(stderr, "USAGE: monty file\n");
 	return (EXIT_FAILURE);
 }
 
 /**
- * printMallocError - Outputs malloc-related error messages.
+ * malloc_error - Prints malloc error messages.
  *
- * Return: Always returns (EXIT_FAILURE).
+ * Return: (EXIT_FAILURE) always.
  */
-int printMallocError(void)
+int malloc_error(void)
 {
-	fprintf(stderr, "Error: Memory allocation failed\n");
+	fprintf(stderr, "Error: malloc failed\n");
 	return (EXIT_FAILURE);
 }
 
 /**
- * printFileOpenError - Outputs file opening error messages with the file name.
- * @filename: Name of the file that failed to open.
+ * f_open_error - Prints file opening error messages w/ file name.
+ * @filename: Name of file failed to open
  *
- * Return: Always returns (EXIT_FAILURE).
+ * Return: (EXIT_FAILURE) always.
  */
-int printFileOpenError(char *filename)
+int f_open_error(char *filename)
 {
-	fprintf(stderr, "Error: Failed to open file %s\n", filename);
+	fprintf(stderr, "Error: Can't open file %s\n", filename);
 	return (EXIT_FAILURE);
 }
 
 /**
- * printUnknownOpError - Outputs error messages for unknown instructions.
- * @opcode: The opcode where the error occurred.
- * @lineNumber: Line number in the Monty bytecode file where the error occurred.
+ * unknown_op_error - Prints unknown instruction error messages.
+ * @opcode: Opcode where error occurred.
+ * @line_number: Line number in Monty bytecodes file where error occured.
  *
- * Return: Always returns (EXIT_FAILURE).
+ * Return: (EXIT_FAILURE) always.
  */
-int printUnknownOpError(char *opcode, unsigned int lineNumber)
+int unknown_op_error(char *opcode, unsigned int line_number)
 {
-	fprintf(stderr, "L%u: Unknown instruction '%s'\n",
-		lineNumber, opcode);
+	fprintf(stderr, "L%u: unknown instruction %s\n",
+		line_number, opcode);
 	return (EXIT_FAILURE);
 }
 
 /**
- * printNoIntError - Outputs error messages for invalid 'push' arguments.
- * @lineNumber: Line number in the Monty bytecode file where the error occurred.
+ * no_int_error - Prints invalid monty_push argument error messages.
+ * @line_number: Line number in Monty bytecodes file where error occurred.
  *
- * Return: Always returns (EXIT_FAILURE).
+ * Return: (EXIT_FAILURE) always.
  */
-int printNoIntError(unsigned int lineNumber)
+int no_int_error(unsigned int line_number)
 {
-	fprintf(stderr, "L%u: Usage: push integer\n", lineNumber);
+	fprintf(stderr, "L%u: usage: push integer\n", line_number);
 	return (EXIT_FAILURE);
 }
-

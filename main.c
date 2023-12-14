@@ -3,31 +3,27 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
-char **tokens = NULL;
+char **op_toks = NULL;
 
 /**
- * main - Entry point for Monty Interpreter
+ * main - the entry point for Monty Interp
  *
- * @argc: Count of arguments passed to the program
- * @argv: Pointer to an array of char pointers to arguments
+ * @argc: the count of arguments passed to the program
+ * @argv: pointer to an array of char pointers to arguments
  *
- * Return: EXIT_SUCCESS on success, EXIT_FAILURE on error
+ * Return: (EXIT_SUCCESS) on success (EXIT_FAILURE) on error
  */
 int main(int argc, char **argv)
 {
-	FILE *script_file = NULL;
-	int exit_status = EXIT_SUCCESS;
+	FILE *script_fd = NULL;
+	int exit_code = EXIT_SUCCESS;
 
 	if (argc != 2)
-		return (printUsageError());
-	
-	script_file = fopen(argv[1], "r");
-	if (script_file == NULL)
-		return (printFileOpenError(argv[1]));
-	
-	exit_status = runMonty(script_file);
-	fclose(script_file);
-	
-	return (exit_status);
+		return (usage_error());
+	script_fd = fopen(argv[1], "r");
+	if (script_fd == NULL)
+		return (f_open_error(argv[1]));
+	exit_code = run_monty(script_fd);
+	fclose(script_fd);
+	return (exit_code);
 }
-
