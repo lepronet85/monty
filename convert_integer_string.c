@@ -2,11 +2,13 @@
 #include <stdlib.h>
 
 /**
- * get_int - gets a character pointer to new string containing int
- * @num: number to convert to string
+ * int_to_string - Converts an integer to a string representation
+ * @num: The number to convert to a string
  *
- * Return: character pointer to newly created string. NULL if malloc fails.
+ * Return: A pointer to a newly created string representation of the number.
+ *          Returns NULL if memory allocation fails.
  */
+
 char *get_int(int num)
 {
 	unsigned int temp;
@@ -31,11 +33,12 @@ char *get_int(int num)
 }
 
 /**
- * _abs - gets the absolute value of an integer
- * @i: integer to get absolute value of
+ * _abs - computes the absolute value of an integer
+ * @i: integer for which to compute the absolute value
  *
- * Return: unsigned integer abs rep of i
+ * Return: unsigned integer representing the absolute value of i
  */
+
 unsigned int _abs(int i)
 {
 	if (i < 0)
@@ -44,12 +47,13 @@ unsigned int _abs(int i)
 }
 
 /**
- * get_numbase_len - gets length of buffer needed for an unsigned int
- * @num: number to get length needed for
- * @base: base of number representation used by buffer
+ * get_numbase_len - Calculates the required buffer length for an unsigned int
+ * @num: The number for which the length of the buffer is required
+ * @base: The base of the number representation used by the buffer
  *
- * Return: integer containing length of buffer needed (doesn't contain null bt)
+ * Return: An integer denoting the length of the buffer needed (excluding null byte)
  */
+
 int get_numbase_len(unsigned int num, unsigned int base)
 {
 	int len = 1; /* all numbers contain atleast one digit */
@@ -63,14 +67,18 @@ int get_numbase_len(unsigned int num, unsigned int base)
 }
 
 /**
- * fill_numbase_buff - fills buffer with correct numbers up to base 36
- * @num: number to convert to string given base
- * @base: base of number used in conversion, only works up to base 36
- * @buff: buffer to fill with result of conversion
- * @buff_size: size of buffer in bytes
+ * fill_numbase_buff - Converts a number to its string representation in the specified base.
+ * @num: The number to convert to a string in the given base.
+ * @base: The base of the number used in the conversion, supports up to base 36.
+ * @buff: The buffer to fill with the result of the conversion.
+ * @buff_size: The size of the buffer in bytes.
  *
- * Return: always void.
+ * This function converts the given number to its string representation in the specified base
+ * and fills the provided buffer with the result. It supports bases up to 36.
+ *
+ * Return: This function always returns void.
  */
+
 void fill_numbase_buff(unsigned int num, unsigned int base,
 			char *buff, int buff_size)
 {
