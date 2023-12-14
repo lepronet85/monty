@@ -1,11 +1,5 @@
 #include "monty.h"
 
-void monty_add(stack_t **stack, unsigned int line_number);
-void monty_sub(stack_t **stack, unsigned int line_number);
-void monty_div(stack_t **stack, unsigned int line_number);
-void monty_mul(stack_t **stack, unsigned int line_number);
-void monty_mod(stack_t **stack, unsigned int line_number);
-
 /**
  * monty_add - Adds the top two values of a stack_t linked list.
  * @stack: A pointer to the top mode node of a stack_t linked list.
